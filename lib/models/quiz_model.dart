@@ -1,4 +1,4 @@
-import 'package:question_project/model/question_model.dart';
+import 'package:question_project/models/question_model.dart';
 
 class QuizModel {
   QuestionModel question;

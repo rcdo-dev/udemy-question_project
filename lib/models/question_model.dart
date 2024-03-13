@@ -1,4 +1,4 @@
-import 'package:question_project/model/response_model.dart';
+import 'package:question_project/models/response_model.dart';
 
 class QuestionModel {
   String text;
