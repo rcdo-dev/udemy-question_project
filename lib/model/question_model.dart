@@ -1,7 +1,11 @@
-class Question {
-  String text;
+import 'package:question_project/model/response_model.dart';
 
-  Question({
+class QuestionModel {
+  String text;
+  List<ResponseModel> responses;
+
+  QuestionModel({
     required this.text,
+    required this.responses,
   });
 }

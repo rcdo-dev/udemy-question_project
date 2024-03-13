@@ -1,12 +1,9 @@
 import 'package:question_project/model/question_model.dart';
-import 'package:question_project/model/response_model.dart';
 
-class Quiz {
-  Question question;
-  List<Response> responses;
+class QuizModel {
+  QuestionModel question;
 
-  Quiz({
+  QuizModel({
     required this.question,
-    required this.responses,
   });
 }

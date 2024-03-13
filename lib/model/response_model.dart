@@ -1,7 +1,7 @@
-class Response {
+class ResponseModel {
   String text;
 
-  Response({
+  ResponseModel({
     required this.text,
   });
 }
