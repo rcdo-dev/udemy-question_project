@@ -1,5 +1,5 @@
-import 'package:question_project/domain/question.dart';
-import 'package:question_project/domain/response.dart';
+import 'package:question_project/model/question_model.dart';
+import 'package:question_project/model/response_model.dart';
 
 class Quiz {
   Question question;
