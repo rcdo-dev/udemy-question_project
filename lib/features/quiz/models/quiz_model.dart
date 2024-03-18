@@ -3,22 +3,23 @@ import 'dart:convert';
 import 'package:question_project/features/quiz/models/question_model.dart';
 
 class QuizModel {
-  List<QuestionModel> questions;
+  final List<QuestionModel>? questions;
 
   QuizModel({
-    required this.questions,
+    this.questions,
   });
 
   factory QuizModel.fromMap(Map<String, dynamic> map) {
     return QuizModel(
-      questions:
-          (map['quiz'] as List).map((e) => QuestionModel.fromMap(e)).toList(),
+      questions: List<QuestionModel>.from(
+        map['quiz'].map((e) => QuestionModel.fromMap(e)),
+      ).toList(),
     );
   }
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
-    map['question'] = questions.map((e) => e.toMap()).toList();
+    map['quiz'] = questions?.map((e) => e.toMap()).toList();
     return map;
   }
 

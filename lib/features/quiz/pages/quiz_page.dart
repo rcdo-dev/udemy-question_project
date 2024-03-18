@@ -16,7 +16,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   final _controller = QuizController();
 
-  void _respond(){
+  void _respond() {
     setState(() {
       _controller.changeQuestion();
     });
@@ -24,8 +24,18 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    // var responses =
-    //     _controller.quiz[_controller.selectedQuestion].question.responses;
+    var responses =
+        _controller.quiz?.questions?[_controller.selectedQuestion].responses;
+    var text = _controller.quiz?.questions?[_controller.selectedQuestion].text;
+
+    List<Response>? buttons = responses
+        ?.map(
+          (e) => Response(
+            buttonText: e.text.toString(),
+            onPressed: _respond,
+          ),
+        )
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -37,16 +47,10 @@ class _QuizPageState extends State<QuizPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            // Question(
-            //   text:
-            //       _controller.quiz[_controller.selectedQuestion].question.text,
-            // ),
-            // ...responses.map(
-            //   (e) => Response(
-            //     buttonText: e.text,
-            //     onPressed: _respond,
-            //   ),
-            // ),
+            Question(
+              text: text.toString(),
+            ),
+            ...?buttons,
           ],
         ),
       ),

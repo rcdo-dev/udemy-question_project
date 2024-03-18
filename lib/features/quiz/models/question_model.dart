@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:question_project/features/quiz/models/response_model.dart';
 
 class QuestionModel {
-  String text;
-  List<ResponseModel> responses;
+  final String? text;
+  final List<ResponseModel>? responses;
 
   QuestionModel({
     required this.text,
@@ -13,8 +13,8 @@ class QuestionModel {
 
   factory QuestionModel.fromMap(Map<String, dynamic> map) {
     return QuestionModel(
-      text: map['text'],
-      responses: (map['responses'] as List)
+      text: map['question']['text'],
+      responses: (map['question']['responses'] as List)
           .map((e) => ResponseModel.fromMap(e))
           .toList(),
     );
@@ -23,7 +23,7 @@ class QuestionModel {
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
     map['text'] = text;
-    map['responses'] = responses.map((e) => e.toMap()).toList();
+    map['responses'] = responses?.map((e) => e.toMap()).toList();
     return map;
   }
 

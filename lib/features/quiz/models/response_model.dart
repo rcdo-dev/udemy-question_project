@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 class ResponseModel {
-  String text;
+  final String? text;
 
   ResponseModel({
-    required this.text,
+    this.text,
   });
 
   factory ResponseModel.fromMap(Map<String, dynamic> map) {

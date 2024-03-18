@@ -1,45 +1,21 @@
-import 'package:question_project/features/quiz/models/question_model.dart';
 import 'package:question_project/features/quiz/models/quiz_model.dart';
-import 'package:question_project/features/quiz/models/response_model.dart';
+import 'package:question_project/features/quiz/repositories/quiz_respository.dart';
 
 class QuizController {
   var selectedQuestion = 0;
+  final repository = QuizRepository();
+  QuizModel? quiz;
 
-  // List<QuizModel> quiz = [
-  //   QuizModel(
-  //     question: QuestionModel(
-  //       text: 'Qual a sua cor favorita?',
-  //       responses: [
-  //         ResponseModel(text: 'Preto'),
-  //         ResponseModel(text: 'Vermelho'),
-  //         ResponseModel(text: 'Verde'),
-  //         ResponseModel(text: 'Branco'),
-  //       ],
-  //     ),
-  //   ),
-  //   QuizModel(
-  //     question: QuestionModel(
-  //       text: 'Qual o seu animal favorito',
-  //       responses: [
-  //         ResponseModel(text: 'Coelho'),
-  //         ResponseModel(text: 'Cobra'),
-  //         ResponseModel(text: 'Elefante'),
-  //         ResponseModel(text: 'Leão'),
-  //       ],
-  //     ),
-  //   ),
-  //   QuizModel(
-  //     question: QuestionModel(
-  //       text: 'Qual o seu instrutor favorito',
-  //       responses: [
-  //         ResponseModel(text: 'Maria'),
-  //         ResponseModel(text: 'João'),
-  //         ResponseModel(text: 'Leo'),
-  //         ResponseModel(text: 'Pedro'),
-  //       ],
-  //     ),
-  //   ),
-  // ];
+  // Incluir gestão de estado na controller.
+
+  QuizController() {
+    upQuiz();
+  }
+
+  Future<QuizModel?> upQuiz() async {
+    quiz = await repository.getQuiz();
+    return quiz;
+  }
 
   void changeQuestion() {
     selectedQuestion++;

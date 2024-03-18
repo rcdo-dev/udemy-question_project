@@ -24,6 +24,49 @@ void main() {
 
   var quizModel = QuizModel(questions: quiz);
 
+  var mapaQuiz = {
+    "quiz": [
+      {
+        "question": {
+          "text": "Qual a sua cor favorita?",
+          "responses": [
+            {"text": "Preto"},
+            {"text": "Vermelho"},
+            {"text": "Verde"},
+            {"text": "Branco"}
+          ]
+        }
+      },
+      {
+        "question": {
+          "text": "Qual o seu animal favorito?",
+          "responses": [
+            {"text": "Coelho"},
+            {"text": "Cobra"},
+            {"text": "Elefante"},
+            {"text": "Leão"}
+          ]
+        }
+      },
+      {
+        "question": {
+          "text": "Qual o seu instrutor favorito?",
+          "responses": [
+            {"text": "Maria"},
+            {"text": "João"},
+            {"text": "Leo"},
+            {"text": "Pedro"}
+          ]
+        }
+      }
+    ]
+  };
+
+  test('Deve retornar um objeto quiz', () {
+    var quiz = QuizModel.fromMap(mapaQuiz);
+    expect(quiz, isA<QuizModel>());
+  });
+
   test('Deve retornar um mapa.', () {
     var map = quizModel.toMap();
     expect(map, isA<Map>());
