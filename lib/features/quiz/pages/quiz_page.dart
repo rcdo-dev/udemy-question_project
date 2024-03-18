@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:question_project/controller/quiz_controller.dart';
-import 'package:question_project/widgets/question.dart';
-import 'package:question_project/widgets/response.dart';
+import 'package:question_project/features/quiz/controller/quiz_controller.dart';
+import 'package:question_project/features/quiz/widgets/question.dart';
+import 'package:question_project/features/quiz/widgets/response.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({
@@ -24,8 +24,8 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    var responses =
-        _controller.quiz[_controller.selectedQuestion].question.responses;
+    // var responses =
+    //     _controller.quiz[_controller.selectedQuestion].question.responses;
 
     return Scaffold(
       appBar: AppBar(
@@ -37,16 +37,16 @@ class _QuizPageState extends State<QuizPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Question(
-              text:
-                  _controller.quiz[_controller.selectedQuestion].question.text,
-            ),
-            ...responses.map(
-              (e) => Response(
-                buttonText: e.text,
-                onPressed: _respond,
-              ),
-            ),
+            // Question(
+            //   text:
+            //       _controller.quiz[_controller.selectedQuestion].question.text,
+            // ),
+            // ...responses.map(
+            //   (e) => Response(
+            //     buttonText: e.text,
+            //     onPressed: _respond,
+            //   ),
+            // ),
           ],
         ),
       ),
