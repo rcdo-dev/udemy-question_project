@@ -1,23 +1,25 @@
+import 'package:flutter/material.dart';
+
+import 'package:question_project/features/quiz/enum/quiz_state.dart';
 import 'package:question_project/features/quiz/models/quiz_model.dart';
 import 'package:question_project/features/quiz/repositories/quiz_respository.dart';
 
 class QuizController {
-  var selectedQuestion = 0;
-  final repository = QuizRepository();
   QuizModel? quiz;
+  var selectedQuestion = 0;
+  final _repository = QuizRepository();
 
-  // Incluir gestão de estado na controller.
+  final stateNotifier = ValueNotifier<QuizState>(QuizState.empty);
 
-  QuizController() {
-    upQuiz();
-  }
-
-  Future<QuizModel?> upQuiz() async {
-    quiz = await repository.getQuiz();
-    return quiz;
+  Future<void> getQuiz() async {
+    stateNotifier.value = QuizState.loading;
+    quiz = await _repository.getQuiz();
+    stateNotifier.value = QuizState.success;
   }
 
   void changeQuestion() {
     selectedQuestion++;
   }
 }
+
+// corrigir erro do tamanho da lista sendo ultrapassado.

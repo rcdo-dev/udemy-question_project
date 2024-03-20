@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:question_project/features/quiz/controller/quiz_controller.dart';
+import 'package:question_project/features/quiz/enum/quiz_state.dart';
 import 'package:question_project/features/quiz/widgets/question.dart';
 import 'package:question_project/features/quiz/widgets/response.dart';
 
@@ -15,6 +16,15 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final _controller = QuizController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.getQuiz();
+    _controller.stateNotifier.addListener(() {
+      setState(() {});
+    });
+  }
 
   void _respond() {
     setState(() {
@@ -37,23 +47,31 @@ class _QuizPageState extends State<QuizPage> {
         )
         .toList();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Perguntas'),
-        centerTitle: true,
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Question(
-              text: text.toString(),
-            ),
-            ...?buttons,
-          ],
+    if (_controller.stateNotifier.value == QuizState.success) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Perguntas'),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Question(
+                text: text.toString(),
+              ),
+              ...?buttons,
+            ],
+          ),
+        ),
+      );
+    } else {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
   }
 }
