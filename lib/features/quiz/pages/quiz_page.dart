@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:question_project/features/quiz/controller/quiz_controller.dart';
 import 'package:question_project/features/quiz/widgets/question.dart';
-import 'package:question_project/features/quiz/widgets/response.dart';
+import 'package:question_project/features/quiz/widgets/response_button.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({
@@ -34,9 +34,9 @@ class _QuizPageState extends State<QuizPage> {
         _controller.quiz?.questions?[_controller.selectedQuestion].responses;
     var text = _controller.quiz?.questions?[_controller.selectedQuestion].text;
 
-    List<Response>? buttons = responses
+    List<ResponseButton>? buttons = responses
         ?.map(
-          (e) => Response(
+          (e) => ResponseButton(
             buttonText: e.text.toString(),
             onPressed: _respond,
           ),

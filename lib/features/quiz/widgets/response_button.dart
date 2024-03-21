@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Response extends StatelessWidget {
+class ResponseButton extends StatelessWidget {
   final String buttonText;
   final void Function() onPressed;
 
-  const Response({
+  const ResponseButton({
     super.key,
     required this.buttonText,
     required this.onPressed,
