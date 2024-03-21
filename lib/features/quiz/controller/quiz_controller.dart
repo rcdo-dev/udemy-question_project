@@ -3,7 +3,7 @@ import 'package:question_project/features/quiz/repositories/quiz_respository.dar
 
 class QuizController {
   QuizModel? quiz;
-  var selectedQuestion = 0;
+  int selectedQuestion = 0;
   final _repository = QuizRepository();
 
   Future<void> getQuiz() async {
@@ -14,5 +14,3 @@ class QuizController {
     selectedQuestion++;
   }
 }
-
-// corrigir erro do tamanho da lista sendo ultrapassado.

@@ -15,16 +15,20 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(
-          result,
-        ),
-        ResponseButton(
-          buttonText: buttonText,
-          onPressed: onPressed,
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            result,
+          ),
+          ResponseButton(
+            buttonText: buttonText,
+            onPressed: onPressed,
+          ),
+        ],
+      ),
     );
   }
 }
