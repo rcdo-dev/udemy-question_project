@@ -5,16 +5,20 @@
         "text": "Qual a sua cor favorita?",
         "responses": [
           {
-            "text": "Preto"
+            "text": "Preto",
+            "score": 10
           },
           {
-            "text": "Vermelho"
+            "text": "Vermelho",
+            "score": 5
           },
           {
-            "text": "Verde"
+            "text": "Verde",
+            "score": 3
           },
           {
-            "text": "Branco"
+            "text": "Branco",
+            "score": 1
           }
         ]
       }
@@ -24,16 +28,20 @@
         "text": "Qual o seu animal favorito?",
         "responses": [
           {
-            "text": "Coelho"
+            "text": "Coelho",
+            "score": 10
           },
           {
-            "text": "Cobra"
+            "text": "Cobra",
+            "score": 5
           },
           {
-            "text": "Elefante"
+            "text": "Elefante",
+            "score": 3
           },
           {
-            "text": "Leão"
+            "text": "Leão",
+            "score": 1
           }
         ]
       }
@@ -43,16 +51,20 @@
         "text": "Qual o seu instrutor favorito?",
         "responses": [
           {
-            "text": "Maria"
+            "text": "Maria",
+            "score": 10
           },
           {
-            "text": "João"
+            "text": "João",
+            "score": 5
           },
           {
-            "text": "Leo"
+            "text": "Leo",
+            "score": 3
           },
           {
-            "text": "Pedro"
+            "text": "Pedro",
+            "score": 1
           }
         ]
       }
