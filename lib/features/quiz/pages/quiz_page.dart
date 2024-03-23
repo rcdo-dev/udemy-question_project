@@ -28,6 +28,10 @@ class _QuizPageState extends State<QuizPage> {
       setState(() {
         _controller.changeQuestion();
       });
+    }else{
+      setState(() {
+        _controller.selectedQuestion = 0;
+      });
     }
   }
 
@@ -77,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
           : ResultPage(
               result: 'Resultado',
               buttonText: 'Reiniciar?',
-              onPressed: () {},
+              onPressed: _respond,
             ),
     );
   }
