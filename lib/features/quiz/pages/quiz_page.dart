@@ -4,6 +4,8 @@ import 'package:question_project/features/quiz/controller/quiz_controller.dart';
 import 'package:question_project/features/quiz/pages/result_page.dart';
 import 'package:question_project/features/quiz/widgets/question.dart';
 import 'package:question_project/features/quiz/widgets/response_button.dart';
+import 'package:question_project/themes/quiz_colors.dart';
+import 'package:question_project/themes/quiz_text_styles.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({
@@ -37,14 +39,16 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  ({String? text, List<ResponseButton>? buttons}) quiz() {
+  ({String? text, List<ResponseButton>? buttons}) quiz({double? screenSize}) {
     var text = _controller.quiz?.questions?[_controller.selectedQuestion].text;
     var responses =
         _controller.quiz?.questions?[_controller.selectedQuestion].responses;
-
+    var size = screenSize ?? 0.0;
     var buttons = responses
         ?.map(
           (e) => ResponseButton(
+            width: size / 1.8,
+            backgroundColor: QuizColors.iceBlue,
             buttonText: e.text.toString(),
             onPressed: () {
               var score = e.score ?? 0;
@@ -67,9 +71,14 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perguntas'),
+        backgroundColor: QuizColors.primary,
+        title: Text(
+          'Perguntas',
+          style: QuizTextStyles.textTitleWhite,
+        ),
         centerTitle: true,
       ),
       body: haveQuestion
@@ -78,15 +87,30 @@ class _QuizPageState extends State<QuizPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  SizedBox(
+                    height: size.height / 36.0,
+                  ),
                   Question(
                     text: quiz().text.toString(),
                   ),
-                  ...?quiz().buttons,
+                  SizedBox(
+                    height: size.height / 36.0,
+                  ),
+                  SizedBox(
+                    height: size.height / 3.7,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ...?quiz(screenSize: size.width).buttons,
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
           : ResultPage(
               result: _controller.checkScore(score: _controller.scoreResult),
+              width: size.width / 1.8,
               buttonText: 'Reiniciar?',
               onPressed: _respond,
             ),
