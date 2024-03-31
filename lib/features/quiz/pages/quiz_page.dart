@@ -23,28 +23,35 @@ class _QuizPageState extends State<QuizPage> {
     _controller.getQuiz().then((_) => setState(() {}));
   }
 
-  void _respond() {
+  void _respond({int? score}) {
     if (haveQuestion) {
       setState(() {
-        _controller.changeQuestion();
+        var value = score ?? 0;
+        _controller.changeQuestion(score: value);
       });
-    }else{
+    } else {
       setState(() {
         _controller.selectedQuestion = 0;
+        _controller.scoreResult = 0;
       });
     }
   }
 
-  ({String? text, List<ResponseButton>? buttons}) questionario() {
+  ({String? text, List<ResponseButton>? buttons}) quiz() {
     var text = _controller.quiz?.questions?[_controller.selectedQuestion].text;
     var responses =
         _controller.quiz?.questions?[_controller.selectedQuestion].responses;
 
     var buttons = responses
-        ?.map((e) => ResponseButton(
-              buttonText: e.text.toString(),
-              onPressed: _respond,
-            ))
+        ?.map(
+          (e) => ResponseButton(
+            buttonText: e.text.toString(),
+            onPressed: () {
+              var score = e.score ?? 0;
+              _respond(score: score);
+            },
+          ),
+        )
         .toList();
 
     return (text: text, buttons: buttons);
@@ -72,14 +79,14 @@ class _QuizPageState extends State<QuizPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Question(
-                    text: questionario().text.toString(),
+                    text: quiz().text.toString(),
                   ),
-                  ...?questionario().buttons,
+                  ...?quiz().buttons,
                 ],
               ),
             )
           : ResultPage(
-              result: 'Resultado',
+              result: _controller.checkScore(score: _controller.scoreResult),
               buttonText: 'Reiniciar?',
               onPressed: _respond,
             ),
